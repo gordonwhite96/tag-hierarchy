@@ -1,4 +1,4 @@
-#Tool for demo-ing tag hierarchy.
+# Tool for demo-ing tag hierarchy.
 
 ## Steps
 1.  Org structure in tagload.csv.  The last column is a driver.  Preceding columns are tags.
