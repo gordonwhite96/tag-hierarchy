@@ -1,6 +1,7 @@
 import csv
 import requests
 import json
+import config
 
 def gettags(token, group):
     d={}
@@ -30,22 +31,16 @@ def updatestuff(token,group,alltags,item):
     tagId=alltags[item[2]]
     ptag1=alltags[item[1]]
     ptag2=alltags[item[0]]
-    #ptag1=''
-    #ptag2=''
     modifytag(token,tagId, ptag1)
     modifytag(token,ptag1, ptag2)
 
 with open('tagload.csv') as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count=0
+    apitoken=config.token
+    apigroup=config.group
     for row in csv_reader:
-        if line_count==7:
-            break
-        if row[0]=='token':
-            apitoken=row[1]
-        elif row[0]=='group':
-            apigroup=row[1]
-        elif row[0]=='org':
+        if row[0]=='org':
             alltags=gettags(apitoken,apigroup)
         else:
 	    updatestuff(apitoken, apigroup, alltags, row)

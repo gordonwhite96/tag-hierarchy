@@ -17,25 +17,11 @@ def gettags(token, group):
         d[name] = tag['id']
     return d
 
-def getdrivers(token, group):
-    d={}
-    params = ( ('access_token', token),)
-    groupId = group
-    postdata = '{"groupId":'+group+'}'
-    driver = requests.post('https://api.samsara.com/v1/fleet/drivers', 
-           params=params, data=postdata)
-    data = json.loads(driver.text)
-    for driver in data['drivers']:
-        name = driver['name']
-        #driverid=driver['id']
-        d[name] = driver['id']
-    return d
-
-def modifytag(token, tag, driver):
-    driverId=str(driver)
+def modifytag(token, tag, parent):
     tagId=str(tag)
+    ptagId=str(parent)
     params = ( ('access_token', token),)
-    patchdata = '{"add":{"drivers":[{"id":'+driverId+'}]}}'
+    patchdata = '{"parentTagId":'+ptagId+'}'
     driver = requests.patch('https://api.samsara.com/v1/tags/'+tagId, 
            params=params, data=patchdata)
     print patchdata
@@ -43,24 +29,20 @@ def modifytag(token, tag, driver):
 
 def updatestuff(token,group,alltags,item):
     tagId=alltags[item[2]]
-    driverId1=alldrivers[item[3]]
-    driverId2=alldrivers[item[4]]
-    print "Tag name: %s ID: %d" % (item[2], tagId)
-    print "Driver name: %s ID: %d" % (item[3], driverId1)
-    print "Driver name: %s ID: %d" % (item[4], driverId2)
-    modifytag(token,tagId, driverId1)
-    modifytag(token,tagId, driverId2)
-
+    ptag1=alltags[item[1]]
+    ptag2=alltags[item[0]]
+    noparentId=0
+    modifytag(token,tagId, noparentId)
+    modifytag(token,ptag1, noparentId)
 
 with open('tagload.csv') as csv_file:
-    apitoken=config.token
-    apigroup=config.group
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count=0
+    apitoken=config.token
+    apigroup=config.group
     for row in csv_reader:
         if row[0]=='org':
             alltags=gettags(apitoken,apigroup)
-            alldrivers=getdrivers(apitoken,apigroup)
         else:
 	    updatestuff(apitoken, apigroup, alltags, row)
         line_count+=1

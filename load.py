@@ -1,5 +1,6 @@
 import csv
 import requests
+import config
 
 def createtag(token, group, tagname):
     params = ( ('access_token', token),)
@@ -27,14 +28,12 @@ def loadrow(token,group,item):
 
 
 with open('tagload.csv') as csv_file:
+    apitoken=config.token
+    apigroup=config.group
     csv_reader = csv.reader(csv_file, delimiter=',')
     line_count=0
     for row in csv_reader:
-        if row[0]=='token':
-            apitoken=row[1]
-        elif row[0]=='group':
-            apigroup=row[1]
-        elif row[0]=='org':
+        if row[0]=='org':
             print "skip headers"
         else:
 	    loadrow(apitoken, apigroup, row)
