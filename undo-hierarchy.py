@@ -24,8 +24,10 @@ def modifytag(token, tag, parent):
     patchdata = '{"parentTagId":'+ptagId+'}'
     driver = requests.patch('https://api.samsara.com/v1/tags/'+tagId, 
            params=params, data=patchdata)
-    print patchdata
-    print driver.status_code
+    if driver.status_code==200:
+        return driver.status_code
+    else:
+        print "failed ", tag, parent
 
 def updatestuff(token,group,alltags,item):
     tagId=alltags[item[2]]

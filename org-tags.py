@@ -38,8 +38,8 @@ def modifytag(token, tag, driver):
     patchdata = '{"add":{"drivers":[{"id":'+driverId+'}]}}'
     driver = requests.patch('https://api.samsara.com/v1/tags/'+tagId, 
            params=params, data=patchdata)
-    print patchdata
-    print driver.status_code
+    #print patchdata
+    return driver.status_code
 
 def updatestuff(token,group,alltags,item):
     tagId=alltags[item[2]]

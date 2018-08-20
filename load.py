@@ -8,8 +8,7 @@ def createtag(token, group, tagname):
     postdata = '{"name":"'+tagname+'"}'
     tag = requests.post('https://api.samsara.com/v1/tags', 
            params=params, data=postdata)
-    print postdata
-    print "Tag: %s" % (tagname), tag.status_code
+    return tag.status_code
 
 def createdriver(token, group, drivername):
     params = ( ('access_token', token),)
@@ -17,7 +16,7 @@ def createdriver(token, group, drivername):
     postdata = '{"name":"'+drivername+'"}'
     driver = requests.post('https://api.samsara.com/v1/fleet/drivers/create', 
            params=params, data=postdata)
-    print "Driver: %s" % (drivername), driver.status_code
+    return driver.status_code
 
 def loadrow(token,group,item):
     createtag(token,group,item[0])
