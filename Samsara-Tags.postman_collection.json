@@ -1,0 +1,168 @@
+{
+	"info": {
+		"_postman_id": "dd52cda9-1405-4352-bef1-bd70be15cc23",
+		"name": "Samsara-Tags",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tags",
+			"item": [
+				{
+					"name": "TAGS-Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "https://api.samsara.com/v1/tags?access_token={{access-token}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"samsara",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access-token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TAGS-update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"newtagname\"}"
+						},
+						"url": {
+							"raw": "https://api.samsara.com/v1/tags/{{tagId}}?access_token={{access-token}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"samsara",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tags",
+								"{{tagId}}"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access-token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TAGS-create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\": \"newtagname\"}"
+						},
+						"url": {
+							"raw": "https://api.samsara.com/v1/tags?access_token={{access-token}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"samsara",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tags"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access-token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TAGS-delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://api.samsara.com/v1/tags/{{tagId}}?access_token={{access-token}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"samsara",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tags",
+								"{{tagId}}"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access-token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "TAGS-Patch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"parentTagId\":1234}"
+						},
+						"url": {
+							"raw": "https://api.samsara.com/v1/tags{{tagId}}?access_token={{access-token}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"samsara",
+								"com"
+							],
+							"path": [
+								"v1",
+								"tags{{tagId}}"
+							],
+							"query": [
+								{
+									"key": "access_token",
+									"value": "{{access-token}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
